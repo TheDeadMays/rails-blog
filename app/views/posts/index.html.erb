@@ -1,12 +1,18 @@
-<% @posts.each do |post| %>
+<% if @posts.present? %>
 
-  <h2><%= post.title %></h2>
+  <% @posts.each do |post| %>
 
-  <span><%= post.created_at.strftime('%b %d %Y') %></span>
+    <h2><%= post.title %></h2>
 
-  <p><%= post.body %></p>
+    <span><%= l post.created_at %></span>
 
-  <span><%= link_to 'Изменить', edit_post_path(post) %></span>
-  <span><%= link_to 'Удалить', post_path(post), :method => :delete %></span>
+    <p><%= post.body %></p>
 
+    <span><%= link_to 'Изменить', edit_post_path(post) %></span>
+    <span><%= link_to 'Удалить', post_path(post), :method => :delete %></span>
+
+  <% end %>
+
+<% else %>
+  <h2>Нет постов :с</h2>
 <% end %>
